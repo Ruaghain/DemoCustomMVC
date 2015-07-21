@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Demo</title>
+	<!-- bower:js -->
+	<script src="vendor/bower_components/jquery/dist/jquery.js"></script>
+	<!-- endbower -->
+	<script src="js/main.js" type="text/javascript"></script>
+ 	<!-- bower:css -->
+ 	<!-- endbower -->
+</head>
+
+<body>
+
+<div id="eg1">
+	<h1>Q1</h1>
+	<input onkeyup="cont.getData(event,'results1', false)">
+	<div id="results1"/>
+</div>
+<div id="eg2">
+	<h1>Q2</h1>
+	<input onkeyup="cont.getData(event,'results2', true)">
+	<div id="results2"/>
+</div>
+<div id="eg3">
+	<h1>Q3</h1>
+	<input onkeyup="cont.getDataError(event,'results3', true)">
+	<div id="results3"/>
+</div>
+</body>
+
+</html>
