@@ -1,10 +1,10 @@
 {
-  "name": "ReactPrototype",
+  "name": "DEMOMVC",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "karma start"
   },
   "author": "",
   "license": "ISC",
@@ -14,15 +14,24 @@
   },
   "devDependencies": {
     "browserify": "~10.2.1",
+    "brfs": "^1.2.0",
+    "browserify-shim": "~3.8.0",
     "grunt": "^0.4.5",
     "grunt-browserify": "~3.8.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-express": "^1.4.1",
     "grunt-open": "^0.2.3",
+    "grunt-postcss": "~0.5.5",
     "grunt-wiredep": "~2.0.0",
-    "matchdep": "~0.3.0"
+    "matchdep": "~0.3.0",
+    "karma-browserify": "~4.2.1",
+    "autoprefixer-core": "~5.2.1",
+    "cssnano": "~2.1.0"
+  },
+  "browserify-shim": {
+    "external": "global:External"
   },
   "browser": {
-	  "jquery": "./vendor/bower_components/jquery/dist/jquery.js"
-	}
+    "jquery": "./vendor/bower_components/jquery/dist/jquery.js"
+  }
 }

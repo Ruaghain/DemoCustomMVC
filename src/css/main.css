@@ -1,0 +1,52 @@
+span.header {
+    transition: all 1s ease-in-out;
+    cursor: pointer;
+    color: #2B4D6F;
+    font-family: 'Raleway', sans-serif;
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 36px;
+    margin: 0 0 24px;
+    text-align: center;
+}
+.selected {
+    zoom: 2;
+    transform: translate(350px, 0);
+    position: absolute;
+}
+.unselected {
+    zoom: 1;
+    transform: translate(10%, 0);
+    position: absolute;
+    transition: all 1s ease-in-out;
+}
+.endpointSel {
+    height: 30vh;
+}
+.form {
+    text-align: center;
+    height: 70vh;
+}
+.form input {
+    width: 50%;
+    height: 30px;
+font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+    	
+}
+span {
+    color: #2B4D6F;
+    font-family: 'Raleway', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 32px;
+    margin: 0 0 24px;
+}
+a {
+    color: #c8c8c8;
+    text-decoration: underline;
+}
+a:hover {
+    color: #1c1c1c;
+    text-decoration: underline;
+}

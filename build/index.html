@@ -5,29 +5,32 @@
 	<!-- bower:js -->
 	<script src="vendor/bower_components/jquery/dist/jquery.js"></script>
 	<!-- endbower -->
-	<script src="js/main.js" type="text/javascript"></script>
+	<script src="js/main.js" type="text/javascript"></script>	
  	<!-- bower:css -->
  	<!-- endbower -->
-	<link rel="stylesheet" type="text/css" href="css/typography.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
-<div id="eg1">
-	<div>
-		<span onclick="helper.changeEndpoint(event,'resultSet1', false, true)" class="selected header">Good Endpoint:</span>
+<div class="endpointSel">
+	<div id="eg1">
+		<div>
+			<span onclick="helper.changeEndpoint(event,'resultSet1', false, true)" class="selected header">Good Endpoint:</span>
+		</div>
+	</div>
+	<div id="eg2">
+		<div>
+			<span onclick="helper.changeEndpoint(event,'resultSet2', true, true)" class="header">Search Endpoint:</span>
+		</div>
+	</div>
+	<div id="eg3">
+		<div>
+			<span onclick="helper.changeEndpoint(event,'resultSet3', true, true)" class="header">Error Endpoint:</span>
+		</div>
 	</div>
 </div>
-<div id="eg2">
-	<div>
-		<span onclick="helper.changeEndpoint(event,'resultSet2', true, true)" class="header">Search Endpoint:</span>
-	</div>
-</div>
-<div id="eg3">
-	<div>
-		<span onclick="helper.changeEndpoint(event,'resultSet3', true, true)" class="header">Error Endpoint:</span>
-	</div>
-<div>
-<div>
+<div class="form" >
 	<input onkeyup="cont.getData(event)">
+	<div id="load"/>
 	<div id="results"/>
 </div>
 </body>
