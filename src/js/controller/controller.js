@@ -1,19 +1,51 @@
+/**
+	endpoints used for querying
+*/
 var base = "https://athena-7.herokuapp.com/ancients.json";
-var resultView = require("../view/resultView");
+var error = "https://athena-7.herokuapp.com/ancients.json?error=true";
+
+/**
+	Importing Views
+*/
+var ancientView = require("../view/ancientView");
 var resultViewContainer = require("../view/resultViewContainer");
 var errorMessageView = require("../view/errorMessageView");
 
-var Result = require("../model/Result");
+/**
+	Importing Models
+*/
+var Ancient = require("../model/Ancient");
 var ResultsContainer = require("../model/ResultsContainer");
 var Error = require("../model/Error");
 
+/**
+ * This controller is used to facilitate the communication from the page to server and render the results
+ * 
+ * @contructor controller
+ * @property {Boolean} useError Indicates whether to use the error endpoint.*		 
+ * @property {Boolean} includeTerm Indicates whether the searchterm should be sent to the server. When false, all results will be returned.
+
+ */
 module.exports = function() {
+	/*
+		Local cache of search results.
+	*/
     var searchResults = {};
     return {
+		includeTerm : false,
+        useError: false,
+        /**
+         * Callback function executed when a query is successfully returned from the server
+         * 
+         * @method searchSuccessCallback
+         * @param {Object} data Data return from server
+         * @param {String} searchTerm Term used to query the server
+         * @param {String} resultsMountNode text used in jQuery selector. This is where the results of the query will be mounted.
+         */
         searchSuccessCallback: function(data, searchTerm, resultsMountNode) {
             var results = "";
             $.each(data, function(index) {
-                results += resultView(new Result(data[index]));
+                results += ancientView(new Ancient(data[index]));
             });
             var resultsList = $(results);
             var container = ResultsContainer({
@@ -21,52 +53,63 @@ module.exports = function() {
                 results: results,
                 searchTerm: searchTerm
             });
-            $("#" + resultsMountNode).empty().append(resultViewContainer(container));
+            $("#results").empty().append(resultViewContainer(container));
             return true;
         },
-        getData: function(event, resultListId, includeTerm) {
-            var searchTerm = event.target.value;
-            $("#" + resultListId).empty();
+        /**
+         * Callback function executed when a query is unsuccessful
+         * 
+         * @method searchFailCallback
+         * @param {Object} data Data return from server
+         * @param {String} resultsMountNode text used in jQuery selector. This is where the results of the query will be mounted.
+         */
+        searchFailCallback: function(data, resultsMountNode) {
+            var errorMessage = new Error(data.responseText);
+            $("#results").empty().append($(errorMessageView(errorMessage)));
+        },
+        /**
+         * This method is used to query the base endpoint with a given search term. 
+         * The results are mounted on the resultsMountNode node.  
+         * 
+         * @method getData
+         * @param {Object} event eventObject
+         */
+        getData: function(event) {
+			var resultsMountNode = endpoint;
+            var searchTerm = event.target.value, failCallback = this.searchFailCallback;
+            //Empty result list
+            $("#results").empty();
             var self = this;
             var options = {
-                url: base,
+                url: this.useError?error:base,
                 cache: false,
                 dataType: "json",
                 success: function(data) {
-                    var cachedData = includeTerm && searchTerm !== "" ? data["ancients"] : data;
-                    self.searchSuccessCallback(cachedData, searchTerm, resultListId);
-                    searchResults[searchTerm] = cachedData;
+                    var cachedData = this.includeTerm && searchTerm !== "" ? data["ancients"] : data;
+                    self.searchSuccessCallback(cachedData, searchTerm, resultsMountNode);
+					searchResults[resultsMountNode] = {};
+					searchResults[resultsMountNode]["search" + searchTerm] = 
+					{
+						results : cachedData
+					}
+                },
+                error: function(data) {
+					failCallback(data, resultsMountNode);
                 }
+
             };
-            if (includeTerm) {
+            // Good endpoint has a different result structure.
+            if (this.includeTerm) {
                 options.data = {
                     'search': searchTerm
                 };
             }
-            if (searchResults[searchTerm] !== undefined) {
-                console.log("using cached data...");
-                self.searchSuccessCallback(searchResults[searchTerm], searchTerm, resultListId);
-
+            if (searchResults.hasOwnProperty(resultsMountNode) && searchResults[resultsMountNode].hasOwnProperty("search" + searchTerm)) {
+				console.log("using cached data...");
+                self.searchSuccessCallback(searchResults[resultsMountNode]["search" + searchTerm], searchTerm, resultsMountNode);
             } else {
                 $.ajax(options);
             }
-        },
-        getDataError: function(event, resultListId, includeTerm) {
-            var searchTerm = event.target.value;
-            $("#" + resultListId).empty();
-            var options = {
-                url: base,
-                cache: false,
-                dataType: "json",
-                data: {
-                    'error': true
-                },
-                error: function(data) {
-                    var errorMessage = new Error(data.responseText);
-                    $("#" + resultListId).empty().append($(errorMessageView(errorMessage)));
-                }
-            };
-            $.ajax(options);
         }
     }
 }
