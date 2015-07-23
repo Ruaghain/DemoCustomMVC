@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Demo</title>
 	<!-- bower:js -->
 	<script src="vendor/bower_components/jquery/dist/jquery.js"></script>
@@ -12,24 +13,24 @@
 </head>
 <body>
 <div class="endpointSel">
-	<div id="eg1">
+	<div class="endpoint">
 		<div>
-			<span onclick="helper.changeEndpoint(event,'resultSet1', false, true)" class="selected header">Good Endpoint:</span>
+			<span onclick="helper.changeEndpoint(event,'resultSet1', false, false)" class="selected header first">Good Endpoint:</span>
 		</div>
 	</div>
-	<div id="eg2">
+	<div class="endpoint">
 		<div>
-			<span onclick="helper.changeEndpoint(event,'resultSet2', true, true)" class="header">Search Endpoint:</span>
+			<span onclick="helper.changeEndpoint(event,'resultSet2', true, false)" class="header second">Search Endpoint:</span>
 		</div>
 	</div>
-	<div id="eg3">
+	<div class="endpoint">
 		<div>
-			<span onclick="helper.changeEndpoint(event,'resultSet3', true, true)" class="header">Error Endpoint:</span>
+			<span onclick="helper.changeEndpoint(event,'resultSet3', true, true)" class="header third">Error Endpoint:</span>
 		</div>
 	</div>
 </div>
-<div class="form" >
-	<input onkeyup="cont.getData(event)">
+<div class="form">
+	<input onkeyup="cont.getData(event)" placeholder="Select endpoint to use and enter text to search...">
 	<div id="load"/>
 	<div id="results"/>
 </div>
