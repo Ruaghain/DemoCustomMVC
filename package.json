@@ -28,6 +28,7 @@
     "grunt-wiredep": "~2.0.0",
     "karma-browserify": "~4.2.1",
     "karma-chrome-launcher": "^0.2.0",
+    "karma-jasmine": "^0.3.6",
     "matchdep": "~0.3.0"
   },
   "browserify-shim": {
