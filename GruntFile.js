@@ -10,11 +10,11 @@ module.exports = function(grunt) {
                 options: {
                     port: 9001,
                     hostname: '0.0.0.0',
-                    bases: ['./build']
+                    bases: ['./dist']
                 }
             }
         },
-        // grunt-browserify will monitor the projects files, jsx transpile them and concatenate to the one file : app/js/build/app.built.js
+        // grunt-browserify will monitor the projects files, jsx transpile them and concatenate to the one file : app/js/dist/app.built.js
         // https://www.npmjs.com/package/grunt-browserify
         browserify: {
             options: {
@@ -25,7 +25,7 @@ module.exports = function(grunt) {
             },
             client: {
                 src: ['src/js/**/*.js'],
-                dest: 'build/js/main.js'
+                dest: 'dist/js/main.js'
             }
         },
         // Apply several post-processors to your CSS using PostCSS
@@ -41,23 +41,22 @@ module.exports = function(grunt) {
                 },
 
                 processors: [
-                    require('pixrem')(), // add fallbacks for rem units
                     require('autoprefixer-core')({
                         browsers: 'last 2 versions'
                     }), // add vendor prefixes
                     require('cssnano')() // minify the result
                 ]
             },
-            build: {
+            dist: {
                 src: 'src/css/main.css',
-                dest: 'build/css/main.css'
+                dest: 'dist/css/main.css'
             }
         },
         // grunt-watch will monitor the projects files
         // https://www.npmjs.com/package/grunt-contrib-watch
         watch: {
             all: {
-                files: ['src/js/**/*.js', 'build/index.html', 'src/css/**/*.css'],
+                files: ['src/js/**/*.js', 'dist/index.html', 'src/css/**/*.css'],
                 tasks: ['browserify', 'postcss'],
                 options: {
                     livereload: true,
@@ -77,8 +76,8 @@ module.exports = function(grunt) {
         // https://www.npmjs.com/package/grunt-wiredep
         wiredep: {
             task: {
-                cwd: "build/vendor",
-                src: ['build/*.html']
+                cwd: "dist/vendor",
+                src: ['dist/*.html']
             }
         }
     });
@@ -90,5 +89,5 @@ module.exports = function(grunt) {
         'watch'
     ]);
     //wire in bower dependancies to index.html file
-    grunt.registerTask('builddep', ['wiredep']);
+    grunt.registerTask('distdep', ['wiredep']);
 };

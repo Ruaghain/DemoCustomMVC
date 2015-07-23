@@ -34,8 +34,8 @@ span.header.selected {
     transition: all 1s ease-in-out;
 }
 .endpointSel {
-    height: 6em;
-	padding : 5%;
+    height: 5em;
+	padding : 2%;
 	background-color: #7C7D7D;
 }
 .form {
@@ -43,6 +43,7 @@ span.header.selected {
     height: 70vh;
 }
 .form input {
+	color: #7C7D7D;
     width: 100%;
     height: 30px;
 	font-family: 'Raleway', sans-serif;
@@ -50,7 +51,7 @@ span.header.selected {
 	text-align: center;    	
 }
 span {
-    color: #2B4D6F;
+    color: #7c7d7d;
     font-family: 'Raleway', sans-serif;
     font-size: 18px;
     font-weight: 500;
@@ -63,17 +64,22 @@ a {
 }
 @media only screen and (min-width:769px){
 	.selected.first{
-		transform: translate(200%, 10px);
+		transform: translate(500px, 30px);
 	}
 	.selected.second{
-		transform: translate(200%, 0px);
+		transform: translate(500px, 0px);
 	}
 	.selected.third{
-		transform: translate(200%, -10px);
+		transform: translate(500px, -30px);
 	}
 
 }
-
+.result {
+	border-bottom : 2px solid silver;
+}
+.resultsContainer{
+	border-bottom : 2px solid silver;
+}
 #results .total{
 	float: right;
 }

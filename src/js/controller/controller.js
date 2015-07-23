@@ -85,7 +85,7 @@ module.exports = function() {
                 cache: false,
                 dataType: "json",
                 success: function(data) {
-                    var cachedData = this.includeTerm && searchTerm !== "" ? data["ancients"] : data;
+                    var cachedData = self.includeTerm && searchTerm !== "" ? data["ancients"] : data;
                     self.searchSuccessCallback(cachedData, searchTerm, resultsMountNode);
 					searchResults[resultsMountNode] = {};
 					searchResults[resultsMountNode]["search" + searchTerm] = 
