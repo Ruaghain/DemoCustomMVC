@@ -28,14 +28,9 @@
     "grunt-wiredep": "~2.0.0",
     "karma-browserify": "~4.2.1",
     "karma-chrome-launcher": "^0.2.0",
-<<<<<<< HEAD
     "matchdep": "~0.3.0",
     "jasmine-core": "^2.3.4",
     "karma-jasmine": "^0.3.6"
-=======
-    "karma-jasmine": "^0.3.6",
-    "matchdep": "~0.3.0"
->>>>>>> eeac0eca0936003fa71124fcb15e22f73e41932e
   },
   "browserify-shim": {
     "external": "global:External"
