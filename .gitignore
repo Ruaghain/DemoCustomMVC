@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Created by .ignore support plugin (hsz.mobi)
 .idea
 node_modules
 *.iml
+=======
+node_modules
+>>>>>>> eeac0eca0936003fa71124fcb15e22f73e41932e
