@@ -10,7 +10,7 @@
     var results = item.results;
     var term = item.term;
     return (
-        `<span>${totalResults} results found mathing the term ${term}</span><br/>` +
+        `<span class="total">${totalResults} results found mathing the term ${term}</span><br/>` +
         `${results}`
     );
 }

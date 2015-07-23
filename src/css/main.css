@@ -15,28 +15,17 @@ span.header {
     margin: 0 0 24px;
     text-align: center;
 }
+span.header:hover {
+    text-decoration: underline;
+}
 span.header.selected {
     zoom: 1.2;
     position: absolute;
 	color : white;
 }
-@media only screen and (min-width:769px){
-	.selected.first{
-		transform: translate(200%, 10px);
-	}
-	.selected.second{
-		transform: translate(200%, 0px);
-	}
-	.selected.third{
-		transform: translate(200%, -10px);
-	}
-
-}
-
 .endpoint {
 	height : 30%;
 }
-
 .unselected {
     zoom: 1;
 	height: 10px;
@@ -51,7 +40,6 @@ span.header.selected {
 }
 .form {
 	margin-top: 2em;
-    text-align: center;
     height: 70vh;
 }
 .form input {
@@ -73,7 +61,19 @@ a {
     color: #c8c8c8;
     text-decoration: underline;
 }
-a:hover {
-    color: #1c1c1c;
-    text-decoration: underline;
+@media only screen and (min-width:769px){
+	.selected.first{
+		transform: translate(200%, 10px);
+	}
+	.selected.second{
+		transform: translate(200%, 0px);
+	}
+	.selected.third{
+		transform: translate(200%, -10px);
+	}
+
+}
+
+#results .total{
+	float: right;
 }
